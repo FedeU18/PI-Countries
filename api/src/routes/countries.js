@@ -12,7 +12,7 @@ const getApiCountries = async() => {
             code: c.cca3,
             name: c.name.common,
             flag: c.flags[0],
-            continent: c.continents ? c.continents[0]: 'No Data',
+            continent: c.region,
             capital: c.capital ? c.capital[0]: 'No Data',
             subregion: c.subregion? c.subregion : 'No Data',
             area: c.area%1===0? c.area: Math.round(c.area),
