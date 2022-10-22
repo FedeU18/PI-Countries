@@ -1,0 +1,96 @@
+.all {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+
+.detail {
+    padding: 2rem;
+    width: 60rem;
+    background: linear-gradient(rgba(100,100,100, 0.75),rgba(100,100,100, 0.75));
+    color: #dddddd;
+}
+
+.info {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+.masInfo {
+    padding:0 3rem;
+}
+
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 3rem;
+}
+
+.table {
+    border-collapse: collapse;
+    font-size: 1.2rem;
+    width: 50rem;
+    border-radius: 5px 5px 0 0;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.table thead tr {
+    background-color: #d83e17;
+    color: #ffffff;
+    font-weight: bold;
+}
+
+.table th,
+.table td {
+    padding: 12px 15px;
+
+}
+
+.table tbody tr {
+    color: #eeeeee;
+    border-bottom: 1px solid #dddddd;
+    background-color: #555555;
+    opacity: .85;
+}
+
+/* .table tbody tr:nth-of-type(even){
+} */
+
+.table tbody tr:hover{
+    color:#d83e17;
+}
+.table tbody tr td .link:hover{
+    font-weight: bold;
+    color:#d83e17;
+}
+
+.tourist {
+    font-weight: bold;
+    font-size: 1.2rem;
+}
+
+@media screen and (max-width: 380px ) {
+    .all{
+        width: 100%;
+    }
+    .detail {
+        width: 100%;
+    }
+    .flag {
+        width: 90%;
+    }
+    .info {
+        flex-direction: column;
+    }
+    .container {
+        width: 100%;
+    }
+    .text {
+        display: none;
+    }
+}

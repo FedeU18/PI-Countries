@@ -1,0 +1,58 @@
+.searchBar {
+    position: relative;
+}
+.searchBar > input {
+    width: 100%;
+    padding: 0.5rem 4rem 0.5rem 0.5rem;
+    font-size: 1.5rem;
+    
+    border: 2px solid black;
+    border-radius: 0.5rem;
+
+    box-sizing: border-box;
+}
+.searchBar > input::placeholder {
+   font-weight: 300; 
+   font-size: 1.25rem ;
+}
+
+
+.searchBar > button {
+    position: absolute;
+    top: calc(0.10rem + 3px);
+    right: calc(0.15rem + 2px);
+
+    font-size: 1.5rem;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 0.25rem;
+
+    border-radius: 0.5rem;
+    border: 2px solid black;
+
+    background-color: #d83e17;
+
+    color: black;
+
+    transition: 250ms;
+}
+
+
+.searchBar > button:hover {
+    color: white;
+    background-color: #000000;
+}
+
+.lupa {
+    width: 1.75rem;
+}
+
+@media (min-width: 576px){
+    .searchBar {
+        width: 25rem;
+    }
+    
+}

@@ -1,0 +1,35 @@
+.inicio{
+    background-image: url(https://media.giphy.com/media/ToMjGpxInCZSzD3V82s/giphy.gif);
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-attachment: fixed;
+    background-size: cover;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+}
+
+.title{
+    color: white;
+    margin-top: 5%;
+}
+.link{
+    text-decoration: none;
+    cursor:pointer;
+    color: white;
+    border-bottom: 0.3rem solid white;
+    border-radius: 1rem;
+}
+
+@media screen and (max-width: 380px ) {
+    .inicio{
+        background-image: url(https://media.giphy.com/media/AErExHJVxRbkm5hPkB/giphy.gif);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+    }
+}

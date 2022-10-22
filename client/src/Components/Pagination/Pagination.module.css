@@ -1,0 +1,28 @@
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 15rem;
+    background: linear-gradient(rgba(100,100,100, 0.75),rgba(100,100,100, 0.75));
+    padding: 0.5rem;
+    color: white;
+    font-weight: bold;
+    border-radius: 5px 0 0;
+}
+
+.image {
+    width: 1.5em;
+    height: 1.5em;
+    transition: all .1s ease-in-out;
+    cursor: pointer;
+    margin-left: 1rem;
+    margin-right: 1rem;
+}
+.image:hover {
+    transform: scale(1.2);
+}
+
+.button {
+    border-color: transparent;
+    background-color: transparent;
+}
