@@ -1,5 +1,4 @@
 const { Router } = require('express');
-const axios = require("axios");
 const {Country, Activity} = require('../db');
 const {Op} = require('sequelize');
 const router = Router()
@@ -42,5 +41,19 @@ router.post('/', async(req,res)=>{
 
 
 })  
+
+router.get('/', async(req,res)=>{
+    const activities = await Activity.findAll({
+        include:{
+            model: Country,
+            attributes: ['name']
+        }
+    })
+    if(activities.length){
+        res.json(activities)
+    } else {
+        res.send('There are no activities')
+    }
+})
 
 module.exports = router

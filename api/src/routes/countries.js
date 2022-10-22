@@ -12,7 +12,7 @@ const getApiCountries = async() => {
             code: c.cca3,
             name: c.name.common,
             flag: c.flags[0],
-            continent: c.region,
+            continent: c.continents ? c.continents[0]: 'No Data',
             capital: c.capital ? c.capital[0]: 'No Data',
             subregion: c.subregion? c.subregion : 'No Data',
             area: c.area%1===0? c.area: Math.round(c.area),
@@ -26,16 +26,28 @@ router.get('/', async(req,res)=>{
     const {name} = req.query
     console.log(name)
 
-    const countriesFromDb = await Country.findAll()
+    const countriesFromDb = await Country.findAll({
+        include:[{
+            model: Activity,
+            attributes: ['name'],
+            through:{
+                attributes:[]
+            }
+        }]
+    })
+
     if(!name){
         if(!countriesFromDb.length){   
             const countries = await getApiCountries()
             await Country.bulkCreate(countries)
             const dbCountries = await Country.findAll({
-                include:{
+                include:[{
                     model: Activity,
-                    attributes: ['name']
-                }
+                    attributes: ['name'],
+                    through:{
+                        attributes:[]
+                    }
+                }]
             })
             res.json(dbCountries)
         } else {
@@ -51,10 +63,13 @@ router.get('/', async(req,res)=>{
                         [Op.iLike]: `%${name}%`
                     }
                 },
-                include:{
+                include:[{
                     model: Activity,
-                    attributes: ['name']
-                }
+                    attributes: ['name'],
+                    through:{
+                        attributes:[]
+                    }
+                }]
             })
             res.json(dbCountries)
         }else {
@@ -64,10 +79,13 @@ router.get('/', async(req,res)=>{
                         [Op.iLike]: `%${name}%`
                     }
                 },
-                include:{
+                include:[{
                     model: Activity,
-                    attributes: ['name']
-                }
+                    attributes: ['name'],
+                    through:{
+                        attributes:[]
+                    }
+                }]
             })
             res.json(dbCountries)
         }
