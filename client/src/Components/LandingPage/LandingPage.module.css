@@ -21,7 +21,7 @@
     border-radius: 1rem;
 }
 
-@media screen and (max-width: 380px ) {
+@media screen and (max-width: 420px ) {
     .inicio{
         background-image: url(https://media.giphy.com/media/AErExHJVxRbkm5hPkB/giphy.gif);
         background-repeat: no-repeat;
@@ -47,7 +47,9 @@
     }
 }
 
-@media screen and (max-width: 420px ) {
+
+
+@media screen and (max-width: 380px ) {
     .inicio{
         background-image: url(https://media.giphy.com/media/AErExHJVxRbkm5hPkB/giphy.gif);
         background-repeat: no-repeat;
