@@ -103,7 +103,7 @@ body {
 }
 
 
-@media screen and (max-width: 380px ) {
+@media screen and (max-width: 420px ) {
     body {
         background-image: url(https://i.pinimg.com/originals/22/75/97/2275978c0c80857bcff3016e619ae1c2.jpg);
         background-repeat: no-repeat;
@@ -165,7 +165,8 @@ body {
     }
 }
 
-@media screen and (max-width: 420px ) {
+
+@media screen and (max-width: 380px ) {
     body {
         background-image: url(https://i.pinimg.com/originals/22/75/97/2275978c0c80857bcff3016e619ae1c2.jpg);
         background-repeat: no-repeat;
