@@ -13,7 +13,7 @@ export const CLEAR = 'CLEAR'
 
 export const getCountries = () =>{
     return async function(dispatch){
-        const json = await axios.get('http://localhost:3001/countries')
+        const json = await axios.get('/countries')
         return dispatch({
             type: GET_COUNTRIES,
             payload: json.data
@@ -23,7 +23,7 @@ export const getCountries = () =>{
 
 export const getCountryDetail = (id) => {
     return function(dispatch){
-        return axios.get('http://localhost:3001/countries/' + id)
+        return axios.get('/countries/' + id)
             .then(response => response.data)
             .then(e=>dispatch({
                 type:GET_COUNTRY_DETAIL,
@@ -40,14 +40,14 @@ export const clear = () => {
 
 export const createActivity = (payload) => {
     return async function(){
-        const post = await axios.post('http://localhost:3001/activities', payload)
+        const post = await axios.post('/activities', payload)
         return post
     }
 }
 
 export const getCountryByName = (name)=>{
     return async function (dispatch){
-        const json = await axios.get('http://localhost:3001/countries?name=' + name)
+        const json = await axios.get('/countries?name=' + name)
         return dispatch({
             type: GET_COUNTRY_BY_NAME,
             payload: json.data
@@ -57,7 +57,7 @@ export const getCountryByName = (name)=>{
 
 export const getActivities = () =>{
     return async function(dispatch){
-        const json = await axios.get('http://localhost:3001/activities')
+        const json = await axios.get('/activities')
         return dispatch({
             type: GET_ACTIVITIES,
             payload: json.data
