@@ -135,7 +135,7 @@ font-weight: 700;
   margin: 1rem;
 }
 
-@media screen and (max-width: 380px ) {
+@media screen and (max-width: 420px ) {
   .all {
     width: 100%;
   }
@@ -156,3 +156,46 @@ font-weight: 700;
     height: 2.5rem;
   }
 }
+
+@media screen and (max-width: 395px ) {
+  .all {
+    width: 100%;
+  }
+  .titleAndForm {
+    width: 100%;
+  }
+  .chosen{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  .unchosen{
+    margin-left: 0.5rem;
+    margin-right: 0.5rem;
+  }
+  
+  .create{
+    width: 5rem;
+    height: 2.5rem;
+  }
+}
+  @media screen and (max-width: 380px ) {
+    .all {
+      width: 100%;
+    }
+    .titleAndForm {
+      width: 100%;
+    }
+    .chosen{
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+    .unchosen{
+      margin-left: 0.5rem;
+      margin-right: 0.5rem;
+    }
+  
+    .create{
+      width: 5rem;
+      height: 2.5rem;
+    }
+  }

@@ -103,6 +103,69 @@ body {
 }
 
 
+@media screen and (max-width: 420px ) {
+    body {
+        background-image: url(https://i.pinimg.com/originals/22/75/97/2275978c0c80857bcff3016e619ae1c2.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        max-width: 380px;
+        height: 100%;
+    }
+    .container {
+        width: 100%;
+    }
+    .all {
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
+    .selects {
+        flex-direction: column;
+    }
+}
+
+@media screen and (max-width: 395px ) {
+    body {
+        background-image: url(https://i.pinimg.com/originals/22/75/97/2275978c0c80857bcff3016e619ae1c2.jpg);
+        background-repeat: no-repeat;
+        background-position: center center;
+        background-attachment: fixed;
+        background-size: cover;
+        position: absolute;
+        width: 100%;
+        max-width: 380px;
+        height: 100%;
+    }
+    .container {
+        width: 100%;
+    }
+    .all {
+        width: 100%;
+    }
+
+    .table {
+        width: 100%;
+    }
+
+    .hidden {
+        display: none;
+    }
+    .selects {
+        flex-direction: column;
+    }
+}
+
+
 @media screen and (max-width: 380px ) {
     body {
         background-image: url(https://i.pinimg.com/originals/22/75/97/2275978c0c80857bcff3016e619ae1c2.jpg);
