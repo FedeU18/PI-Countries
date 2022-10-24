@@ -115,7 +115,7 @@ const Home = () => {
           </table>
         </div>
           :
-          <div>No results</div>
+          <div><img src="https://media.giphy.com/media/VX7yEoXAFf8as/giphy.gif" alt="loading-gif" /></div>
         }
       </div>
     </div>
