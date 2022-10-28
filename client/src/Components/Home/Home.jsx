@@ -17,7 +17,7 @@ const Home = () => {
 
   //paginado
   const [page,setPage] = useState(1);
-  const perPage = 10;
+  let perPage = 10;
   const max = Math.ceil(countries.length / perPage)
   const countriesPerPage = countries.slice((page-1)*perPage,(page-1)*perPage +perPage) 
 

@@ -135,6 +135,12 @@ font-weight: 700;
   margin: 1rem;
 }
 
+.alarm {
+  color: #d83e17;
+  font-weight: bold;
+  width: 20rem;
+}
+
 @media screen and (max-width: 420px ) {
   .all {
     width: 100%;
