@@ -5,6 +5,24 @@ import { createActivity, getCountries } from '../../Redux/actions'
 import NavBar from '../NavBar/NavBar'
 import s from './Create.module.css'
 
+function validate(input){
+  let errors = {}
+  if(!input.name){
+    errors.name = "A name for the activity is required"
+  }
+  if(input.name.length > 10){
+    errors.name = "The name must not be longer than 10 characters"
+  }
+  if(input.name && !/^([a-zA-ZñÑáéíóúÁÉÍÓÚ])+$/i.test(input.name)){
+    errors.name = "The name must not contain numbers or symbols"
+  }
+  if(input.difficulty >5 && input.difficulty <1){
+    errors.difficulty = "The difficulty cannot be less than 1 or more than 5"
+  }
+
+  return errors
+}
+
 const Create = () => {
   const dispatch = useDispatch()
   const countries = useSelector(state=> state.countries)
@@ -22,6 +40,8 @@ const Create = () => {
     countries: []
   })
 
+  const [error, setError] = useState({})
+
   function disabled(input){
     if(input.name.length && input.difficulty<=5 && input.difficulty>=1 && input.duration.length && input.season.length &&input.countries.length){
       return false
@@ -35,7 +55,10 @@ const Create = () => {
       ...input,
       [e.target.name]: e.target.value
     })
-    console.log([e.target.name] + ': ',e.target.value)
+    setError(validate({
+      ...input,
+      [e.target.name]: e.target.value
+    }))
   }
 
   function handleSeasonButton(e){
@@ -45,7 +68,6 @@ const Create = () => {
       '':
       e.target.value
     })
-    console.log(input.season)
   }
 
   function handleDifficultyButton(e){
@@ -55,7 +77,10 @@ const Create = () => {
       0:
       Number(e.target.value)
     })
-    console.log(input)
+    setError(validate({
+      ...input,
+      difficulty: e.target.value
+    }))
   }
 
   function handleSelect(e){
@@ -63,7 +88,6 @@ const Create = () => {
       ...input,
       countries: e.target.value !== "default"? [...input.countries, e.target.value]:[...input.countries] 
     })
-    console.log(input.countries)
   }
 
   function handleSubmit(e){
@@ -107,7 +131,7 @@ const Create = () => {
               />
               <label className={s.form__label}>Name</label>
             </div>
-            {input.name === '' && <div className={s.alarm}>A name for the activity is required</div>}
+            {error.name && <p className={s.alarm}>{error.name}</p>}
             <div className={s.form__group}>
               <input 
                 type="input" 
@@ -121,7 +145,6 @@ const Create = () => {
               />
               <label className={s.form__label}>Duration</label>
             </div>
-            {input.duration === '' && <div className={s.alarm}>It is necessary to add a duration to the activity</div>}
             <div className={s.form__group}>
               <label className={s.buttonLabel}>Difficulty  </label>
               <button className={input.difficulty === 1 ? s.chosen : s.unchosen } type='button' value='1' onClick={(e)=>handleDifficultyButton(e)}>1</button>
@@ -130,7 +153,7 @@ const Create = () => {
               <button className={input.difficulty === 4 ? s.chosen : s.unchosen } type='button' value='4' onClick={(e)=>handleDifficultyButton(e)}>4</button>
               <button className={input.difficulty === 5 ? s.chosen : s.unchosen } type='button' value='5' onClick={(e)=>handleDifficultyButton(e)}>5</button>
             </div>
-            {input.difficulty === 0 && <div className={s.alarm}>It is necessary to assign a difficulty to the activity</div>}
+            {error.difficulty && <p className={s.alarm}>{error.difficulty}</p>}
             <div className={s.form__group}>
               <label className={s.buttonLabel}>Season  </label>
               <button className={input.season === 'Summer' ? s.chosen : s.unchosen} /*disabled={input.season!=="Summer"&& input.season.length!==0 && true}*/ type='button' onClick={(e)=>handleSeasonButton(e)} value='Summer' >Summer</button>
@@ -138,7 +161,6 @@ const Create = () => {
               <button className={input.season === 'Fall' ? s.chosen : s.unchosen} /*disabled={input.season!=="Fall"&& input.season.length!==0 && true}*/ type='button' onClick={(e)=>handleSeasonButton(e)} value='Fall' >Fall</button>
               <button className={input.season === 'Spring' ? s.chosen : s.unchosen} /*disabled={input.season!=="Spring"&& input.season.length!==0 && true}*/ type='button' onClick={(e)=>handleSeasonButton(e)} value='Spring' >Spring</button>
             </div>
-            {input.season === '' && <div className={s.alarm}>It is necessary to assign a season to the activity</div>}
             <div>
               <select className={s.select} onChange={(e)=>handleSelect(e)}>
                 <option value="default">Choose the countries</option>
@@ -153,12 +175,11 @@ const Create = () => {
               <div className={s.countries}>
                 {
                   input.countries.length ? input.countries.map((c)=>{
-                    return <button className={s.country} onClick={(e)=> handleClose(e)} key={c} value={c}>{c}</button>
+                    return <button type='button' className={s.country} onClick={(e)=> handleClose(e)} key={c} value={c}>{c}</button>
                   }):<></>
                 }
               </div>
             </div>
-            {!input.countries.length ? <div className={s.alarm}>It is necessary to assign the activity to one or more countries</div> : <></>}
             <button className={s.create} disabled={disabled(input)} type='submit' onClick={(e)=>handleSubmit(e)}>¡Create!</button>
           </form>
         </div>

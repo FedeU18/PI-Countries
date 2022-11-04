@@ -5,7 +5,7 @@ import s from './NavBar.module.css'
 import img from './img/airplane.png'
 
 
-const NavBar = () => {
+const NavBar = ({setPage}) => {
   return (
     <nav className={s.nav}>
         <Link to='/Home'>
@@ -17,7 +17,7 @@ const NavBar = () => {
               Create <span className={s.create}> a new activity</span>
           </Link>
         </div>
-        <SearchBar />
+        <SearchBar setPage={setPage} />
     </nav>
   )
 }

@@ -9,7 +9,7 @@ export const SORT_BY_POPULATION = 'SORT_BY_POPULATION'
 export const FILTER_BY_CONTINENT = 'FILTER_BY_CONTINENT'
 export const FILTER_BY_ACTIVITY = 'FILTER_BY_ACTIVITY'
 export const CLEAR = 'CLEAR'
-
+export const SEARCH_BY_ACTIVITY = "SEARCH_BY_ACTIVITY"
 
 export const getCountries = () =>{
     return async function(dispatch){
@@ -89,6 +89,13 @@ export const filterByContinent=(payload)=>{
 export const filterByActivity = (payload)=>{
     return {
         type: FILTER_BY_ACTIVITY,
+        payload
+    }
+}
+
+export const searchByActivity = (payload) =>{
+    return {
+        type: SEARCH_BY_ACTIVITY,
         payload
     }
 }

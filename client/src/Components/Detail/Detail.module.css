@@ -74,6 +74,10 @@
     font-size: 1.2rem;
 }
 
+.flag {
+    width: 60%;
+}
+
 @media screen and (max-width: 420px ) {
     .all{
         width: 100%;

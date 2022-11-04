@@ -1,12 +1,14 @@
 import React, {useState} from 'react'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import s from './SearchBar.module.css'
-import { getCountryByName } from '../../Redux/actions'
+import { getCountryByName, searchByActivity } from '../../Redux/actions'
 import loupe from './img/loupe.png'
 
-const SearchBar = () => {
+const SearchBar = ({setPage}) => {
   const [input, setInput] = useState("")
   const dispatch = useDispatch()
+
+  const activities = useSelector(state => state.activities)
 
   function handleInput(e){
     setInput(e.target.value)
@@ -14,7 +16,19 @@ const SearchBar = () => {
 
   function handleSubmit(e){
     e.preventDefault()
-    dispatch(getCountryByName(input))
+    setPage(1)
+    let searchActivities = []
+    activities.forEach((activity)=>{
+      if(activity.name === input){
+        searchActivities.push(activity.name)
+      }
+    })
+    if(searchActivities.includes(input)){
+      dispatch(searchByActivity(input))
+    }else {
+      dispatch(getCountryByName(input))
+    }
+    setInput("")
   }
 
   return (

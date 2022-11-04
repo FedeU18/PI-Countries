@@ -7,7 +7,8 @@ import {
     FILTER_BY_ACTIVITY,
     GET_COUNTRY_BY_NAME,
     GET_COUNTRY_DETAIL,
-    CLEAR
+    CLEAR,
+    SEARCH_BY_ACTIVITY
 } from '../actions'
 
 const initialState = {
@@ -47,7 +48,7 @@ export default function reducer(state = initialState, action){
                 detail: {}
             }
         case SORT_ALPHABETICALLY:
-            const countries = [...state.allCountries]
+            const countries = [...state.countries]
             const sortedCountries = action.payload === 'default' ? countries : action.payload === 'ASC' ?
             countries.sort((a,b)=>{
                 if(a.name > b.name){
@@ -73,7 +74,7 @@ export default function reducer(state = initialState, action){
             };
 
         case SORT_BY_POPULATION:
-            const countries2 = [...state.allCountries]
+            const countries2 = [...state.countries]
             const sortCountries = action.payload === 'default'? countries2: action.payload === 'most' ?
             countries2.sort((a,b)=>{
                 return b.population-a.population
@@ -118,6 +119,26 @@ export default function reducer(state = initialState, action){
                 countries: filter
             }
 
+        case SEARCH_BY_ACTIVITY:
+            const countries5 = [...state.allCountrcountriesies]
+            const countriesWithActivities = countries5.filter((country)=> {
+                return country.activities.length>0
+            })
+
+            let countriesWithTheActivity = []
+            
+            countriesWithActivities.forEach((country)=>{
+                country.activities.forEach((activity)=>{
+                    if(activity.name === action.payload){
+                        countriesWithTheActivity.push(country)
+                    }
+                })
+            })
+
+            return {
+                ...state,
+                countries: countriesWithTheActivity
+            }
         default:
             return {...state};
     }

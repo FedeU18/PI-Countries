@@ -4,6 +4,7 @@ import {getCountries,getActivities,sortAlphabetically, sortByPopulation, filterB
 import s from './Home.module.css'
 import Pagination from '../Pagination/Pagination'
 import {Link} from 'react-router-dom'
+import NavBar from '../NavBar/NavBar'
 
 const Home = () => {
   //listado de paises
@@ -23,22 +24,32 @@ const Home = () => {
 
   //Sort alphabetically
   function handleSortAlphabetically(e){
+    setPage(1)
     dispatch(sortAlphabetically(e.target.value))
   }
   //Sort by population
   function handleSortPopulation(e){
+    setPage(1)
     dispatch(sortByPopulation(e.target.value))
   }
   //Filter by continent
   function handleFilterContinent(e){
+    setPage(1)
     dispatch(filterByContinent(e.target.value))
   }
   //Filter by activity
   function handleFilterActivity(e){
+    setPage(1)
     dispatch(filterByActivity(e.target.value))
   }
+  //reload countries
+  function handleReload(e){
+    dispatch(getCountries())
+  }
+
   return (
     <div className={s.contenedor}>
+      <NavBar setPage={setPage}/>
       <div className={s.all}>
         <div className={s.selects}>
           <span>
@@ -74,6 +85,9 @@ const Home = () => {
               <option value="Africa">Africa</option>
               <option value="Antarctica">Antarctica</option>
             </select>
+          </span>
+          <span>
+            <button onClick={(e)=>handleReload(e)}>Reload Countries</button>
           </span>
         </div>
         <div className={s.pagination}>

@@ -26,69 +26,40 @@ router.get('/', async(req,res)=>{
     const {name} = req.query
     console.log(name)
 
-    const countriesFromDb = await Country.findAll({
-        include:[{
-            model: Activity,
-            attributes: ['name'],
-            through:{
-                attributes:[]
-            }
-        }]
-    })
+    const countriesFromDb = await Country.findAll()
+
+    if(!countriesFromDb.length){
+        const countries = await getApiCountries()
+        await Country.bulkCreate(countries)
+    }
 
     if(!name){
-        if(!countriesFromDb.length){   
-            const countries = await getApiCountries()
-            await Country.bulkCreate(countries)
-            const dbCountries = await Country.findAll({
-                include:[{
-                    model: Activity,
-                    attributes: ['name'],
-                    through:{
-                        attributes:[]
-                    }
-                }]
-            })
-            res.json(dbCountries)
-        } else {
-            res.json(countriesFromDb)
-        }
-    }else{
-        if(!countriesFromDb.length){   
-            const countries = await getApiCountries()
-            await Country.bulkCreate(countries)
-            const dbCountries = await Country.findAll({
-                where: {
-                    name: {
-                        [Op.iLike]: `%${name}%`
-                    }
-                },
-                include:[{
-                    model: Activity,
-                    attributes: ['name'],
-                    through:{
-                        attributes:[]
-                    }
-                }]
-            })
-            res.json(dbCountries)
-        }else {
-            const dbCountries = await Country.findAll({
-                where: {
-                    name: {
-                        [Op.iLike]: `%${name}%`
-                    }
-                },
-                include:[{
-                    model: Activity,
-                    attributes: ['name'],
-                    through:{
-                        attributes:[]
-                    }
-                }]
-            })
-            res.json(dbCountries)
-        }
+        const dbCountries = await Country.findAll({
+            include:[{
+                model: Activity,
+                attributes: ['name'],
+                through:{
+                    attributes:[]
+                }
+            }]
+        })
+        res.json(dbCountries)
+    }else{      
+        const dbCountries = await Country.findAll({
+            where: {
+                name: {
+                    [Op.iLike]: `%${name}%`
+                }
+            },
+            include:[{
+                model: Activity,
+                attributes: ['name'],
+                through:{
+                    attributes:[]
+                }
+            }]
+        })
+        res.json(dbCountries)
     }
 })
 

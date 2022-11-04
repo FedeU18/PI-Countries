@@ -13,12 +13,18 @@
     color: white;
     margin-top: 5%;
 }
+
 .link{
     text-decoration: none;
     cursor:pointer;
-    color: white;
-    border-bottom: 0.3rem solid white;
+    color: black;
+    border-bottom: 0.3rem solid black;
     border-radius: 1rem;
+    transition: all .5s ease-in-out;
+}
+.link:hover {
+    color: #d83e17;
+    border-color: #d83e17;
 }
 
 @media screen and (max-width: 420px ) {

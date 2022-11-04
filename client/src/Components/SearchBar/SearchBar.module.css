@@ -19,7 +19,7 @@
 
 .searchBar > button {
     position: absolute;
-    top: calc(0.10rem + 3px);
+    top: calc(0.10rem + 2px);
     right: calc(0.15rem + 2px);
 
     font-size: 1.5rem;
@@ -43,7 +43,7 @@
 
 .searchBar > button:hover {
     color: white;
-    background-color: #000000;
+    background-color: #999;
 }
 
 .lupa {
