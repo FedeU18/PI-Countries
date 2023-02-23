@@ -6,11 +6,34 @@ const {
   PGUSER,PGPASSWORD,PGHOST,PGPORT,PGDATABASE
 } = process.env;
 
-let sequelize = new Sequelize(`postgresql://${ PGUSER }:${ PGPASSWORD }@${ PGHOST }:${ PGPORT }/${ PGDATABASE }`, {
+let sequelize =
+  process.env.NODE_ENV === "production"
+    ? new Sequelize({
+      database: PGDATABASE,
+      dialect: "postgres",
+      host: PGHOST,
+      port: PGPORT,
+      username: PGUSER,
+      password: PGPASSWORD,
+      pool: {
+        max: 3,
+        min: 1,
+        idle: 10000,
+      },
+      dialectOptions: {
+        ssl: {
+          require: true,
+          rejectUnauthorized: false,
+        },
+        keepAlive: true,
+      },
+      ssl: true,
+    })
+  : new Sequelize(`postgresql://${ PGUSER }:${ PGPASSWORD }@${ PGHOST }:${ PGPORT }/${ PGDATABASE }`, {
     // postgresql://${{ PGUSER }}:${{ PGPASSWORD }}@${{ PGHOST }}:${{ PGPORT }}/${{ PGDATABASE }}
       logging: false, // set to console.log to see the raw SQL queries
       native: false, // lets Sequelize know we can use pg-native for ~30% more speed
-});
+    });
 
 const basename = path.basename(__filename);
 
